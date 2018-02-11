@@ -1,35 +1,43 @@
 
 @media screen 
-	and (min-device-width: 1200px) {
-		.k8emo{
+	and (min-width: 1200px)
+	and (-webkit-min-device-pixel-ratio: 2) {
+		.k8em0{
 			width: 600px;
 			height: 600px;
-			background: url(k8emo.jpg) 0 0px; 
+			background: url(k8em0.jpg); 
+			background-position: 0px 0px;
 		}
 	}
 @media screen 
-	and (min-device-width: 900px)
-	and (max-device-width: 1200px) {
-		.k8emo{
+	and (min-width: 900px)
+	and (max-width: 1200px)
+	and (-webkit-min-device-pixel-ratio: 1) {
+		.k8em0{
 			width: 600px;
 			height: 600px;
-			background: url(k8emo.jpg) 600 0px; 
+			background: url(k8em0.jpg); 
+			background-position: 600px 0px; 
 		}
 	}
 @media screen 
-	and (min-device-width: 600px)
-	and (max-device-width: 900px) {
-		.k8emo{
+	and (min-width: 600px)
+	and (max-width: 900px)
+	and (-webkit-min-device-pixel-ratio: 2) {
+		.k8em0{
 			width: 600px;
 			height: 600px;
-			background: url(k8emo.jpg) 0 -600px; 
+			background: url(k8em0.jpg); 
+			background-position: 0px 600px;
 		}
 	}
 @media screen 
-	and (max-device-width: 600px) {
-		.k8emo{
+	and (max-width: 600px) 
+	and (-webkit-min-device-pixel-ratio: 1) {
+		.k8em0{
 			width: 600px;
 			height: 600px;
-			background: url(k8emo.jpg) 600 -600px; 
+			background: url(k8em0.jpg);
+			background-position: -600px -600px;
 		}
 	}
