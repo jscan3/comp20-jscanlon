@@ -1,0 +1,35 @@
+
+@media screen 
+	and (min-device-width: 1200px) {
+		.k8emo{
+			width: 600px;
+			height: 600px;
+			background: url(k8emo.jpg) 0 0px; 
+		}
+	}
+@media screen 
+	and (min-device-width: 900px)
+	and (max-device-width: 1200px) {
+		.k8emo{
+			width: 600px;
+			height: 600px;
+			background: url(k8emo.jpg) 600 0px; 
+		}
+	}
+@media screen 
+	and (min-device-width: 600px)
+	and (max-device-width: 900px) {
+		.k8emo{
+			width: 600px;
+			height: 600px;
+			background: url(k8emo.jpg) 0 -600px; 
+		}
+	}
+@media screen 
+	and (max-device-width: 600px) {
+		.k8emo{
+			width: 600px;
+			height: 600px;
+			background: url(k8emo.jpg) 600 -600px; 
+		}
+	}
