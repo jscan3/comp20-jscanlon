@@ -1,0 +1,13 @@
+/* Style sheet for rick roll  */ 
+
+body {
+	text-align: center;
+	font: "Courier"; 
+	font-weight: bold;
+}
+#Title {
+	text-align: center;
+	font: "Courier";
+	font-size: 600px; 
+	font-style: italic; 
+}
