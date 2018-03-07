@@ -123,24 +123,28 @@ function getDistances(dataObject){
 			passengersMarker.setMap(map);
 
 			distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords,passengerCoords);
+			// convert distance from meters to miles
 			distance = Math.round(distance * .000621371 * 1000)/1000;
 			
 			// send in content for infoWindow function
 			infoWindow(passengers,passengersMarker,distance);
 
+			// update minimum distance and cooresponding closestPassenger object 
 			if (distance < minDistance) {
 				minDistance = distance;
 				closestPassenger = passengers;
 			}
 		}
-
+		// invoke function to create info window on user's location pin
 		myInfoWindow(passengers,minDistance); 
 	}
+
 	// user is passenger 
 	else { 
 
 		var vehicleArray = dataObject.vehicles; 
 		var closestVehicle = {};
+
 		for (var vehicles of vehicleArray) { 
 
 			vehicleLat = vehicles["lat"];
@@ -152,12 +156,12 @@ function getDistances(dataObject){
 				icon: vehicleIcon
 			}); 
 
-			distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords,vehicleCoords);
-			// convert distance from meters to miles
-			distance = Math.round(distance * .000621371 * 1000)/1000;
 			// render vehicle pin on map 
 			vehicleMarker.setMap(map);
-			// create info window on vehicle pin 
+
+			distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords,vehicleCoords);
+			distance = Math.round(distance * .000621371 * 1000)/1000;
+
 			infoWindow(vehicles,vehicleMarker,distance);
 
 			if (distance < minDistance) {
