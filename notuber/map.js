@@ -184,6 +184,8 @@ function myInfoWindow(nearestObject,minDistance) {
 	var contentString = ""; 
 	// passenger or driver
 	var objectString = "";
+	// reinitialize user's username 
+	username = "TapqFEtdFF"; 
 
 	if (nearestObject.passengers == undefined)
 		objectString = "driver"; 
