@@ -4,13 +4,14 @@ var username = "TapqFEtdFF";
 var myLocation; 
 var map; 
 var marker;
-var passengerMarker; 
+var passengersMarker;
 var vehicleMarker;
 
 function initMap() {
+
 	var defaultLocation  = new google.maps.LatLng(0,0); 
 
-	// set up map 
+	// configure map settings
 	var myOptions = { 
 		zoom: 13,
 		center: defaultLocation,
@@ -20,7 +21,7 @@ function initMap() {
 	// create the map in the "map_canvas" div with default location
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
 
-	// get location
+	// get location of user
 	getMyLocation(); 
 }
 
@@ -72,16 +73,18 @@ function getInformation() {
 	var xhr = new XMLHttpRequest();
 	// set URL
 	var URL =  "https://jordan-marsh.herokuapp.com/rides";
-	// sending in parameter
+
+	// sending in string as parameter to send function
 	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng; 
 	xhr.open("POST", URL, true); 
+
 	// send proper header information along with request
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	// set up handler to deal with HTTP response 
 	xhr.onreadystatechange = function() {
 
-		// if request completed and HTTP status is ok, get response dat
+		// if request completed and HTTP status is ok, get response data
 		if (xhr.readyState == 4 && xhr.status == 200) {
 
 			// converts string into javascipt object
@@ -135,7 +138,7 @@ function getDistances(dataObject){
 				closestPassenger = passengers;
 			}
 		}
-		// invoke function to create info window on user's location pin
+		// invoke function to create info window on click of user's location pin
 		myInfoWindow(passengers,minDistance); 
 	}
 
@@ -150,7 +153,7 @@ function getDistances(dataObject){
 			vehicleLat = vehicles["lat"];
 			vehicleLng = vehicles["lng"];
 			vehicleCoords = new google.maps.LatLng(vehicleLat, vehicleLng);
-
+			console.log(vehicles);
 			vehicleMarker = new google.maps.Marker({
 				position: vehicleCoords, 
 				icon: vehicleIcon
@@ -177,17 +180,23 @@ function getDistances(dataObject){
 
 function myInfoWindow(nearestObject,minDistance) { 
 
+	// declare and initialize content displayed on info window 
+	var contentString = ""; 
+	// passenger or driver
 	var objectString = "";
+
 	if (nearestObject.passengers == undefined)
 		objectString = "driver"; 
 	else 
 		objectString = "passenger";
 
-	var myInfoWindow = new google.maps.InfoWindow();
+	if (minDistance == Number.POSITIVE_INFINITY) 
+		contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> Sorry no available " + objectString + "!</h2>";
+	else 
+		contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> closest " + objectString + ": " + minDistance +  " miles</h2>";
 
-	// content displayed on info window 
-	var contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> closest " + objectString + ": " + minDistance +  " miles</h2>";
-				
+	var myInfoWindow = new google.maps.InfoWindow();
+			
 	// Open info window on click of marker
 	google.maps.event.addListener(marker, 'click', function() {
 			myInfoWindow.setContent(contentString);
@@ -206,7 +215,7 @@ function infoWindow(dataObject,marker,distance) {
 		objectString = "passenger";
 
 	var infoWindow = new google.maps.InfoWindow(); 
-	// diplayed content for on each passenger or vehicle icon
+	// diplayed content for each passenger or vehicle icon
 	var contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> distance: " + distance + " miles</h2>";
 
 	
