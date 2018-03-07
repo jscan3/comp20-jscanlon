@@ -15,22 +15,27 @@ function initMap() {
 		zoom: 13,
 		center: defaultLocation,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
-	}; 
+	};
+
 	// create the map in the "map_canvas" div with default location
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
 
 	// get location
 	getMyLocation(); 
 }
+
 function getMyLocation() {
+
 	if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
 		navigator.geolocation.getCurrentPosition(function(position) {
 			myLat = position.coords.latitude;
 			myLng = position.coords.longitude;
-			// render map with location of user
+
+			// render map with current location of user
 			renderMap();
 		});
 	}
+
 	else {
 		alert("Geolocation is not supported by your web browser.  What a shame!");
 	}
@@ -45,6 +50,7 @@ function renderMap() {
 		center: myLocation, 
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
+	// render map to zoom to current location of user
 	map = new google.maps.Map(document.getElementById("map_canvas"), myLocationOptions); 
 	map.panTo(myLocation);
 
@@ -55,7 +61,9 @@ function renderMap() {
 		position: myLocation, 
 		icon: image
 	}); 
+	// add blue thumbtack marker to map
 	marker.setMap(map);
+	// get passenger or vehicle data
 	getInformation();
 }
 function getInformation() {
@@ -67,28 +75,34 @@ function getInformation() {
 	// sending in parameter
 	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng; 
 	xhr.open("POST", URL, true); 
+	// send proper header information along with request
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	// set up handler to deal with HTTP response 
 	xhr.onreadystatechange = function() {
+
+		// if request completed and HTTP status is ok, get response dat
 		if (xhr.readyState == 4 && xhr.status == 200) {
+
 			// converts string into javascipt object
 			var dataObject = JSON.parse(xhr.responseText); 
-			// find closest vehicle or passenger
+			// function to find closest vehicle or passenger
 			getDistances(dataObject); 
-			//infoWindow();
-
 		}
 	}
 	xhr.send(params);
 }
 
 function getDistances(dataObject){
+
 	var passengersArray = dataObject.passengers;
+
 	var myCoords = new google.maps.LatLng(myLat,myLng);
 	var minDistance = Number.POSITIVE_INFINITY; 
+
 	var closestPassenger = {};
 	var closestVehicle = {};
+
 	var passengerIcon = "passengerIcon.png";
 	var vehicleIcon = "vehicleMarker.png";
 
@@ -105,10 +119,13 @@ function getDistances(dataObject){
 				icon: passengerIcon
 			}); 
 
-			distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(myCoords,passengerCoords));
-			distance = Math.round(distance * .000621371 * 1000)/1000;
+			// render individual passenger's pin on map
 			passengersMarker.setMap(map);
-			//
+
+			distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords,passengerCoords);
+			distance = Math.round(distance * .000621371 * 1000)/1000;
+			
+			// send in content for infoWindow function
 			infoWindow(passengers,passengersMarker,distance);
 
 			if (distance < minDistance) {
@@ -116,8 +133,8 @@ function getDistances(dataObject){
 				closestPassenger = passengers;
 			}
 		}
+
 		myInfoWindow(passengers,minDistance); 
-		//infoWindow(closestPassenger);
 	}
 	// user is passenger 
 	else { 
