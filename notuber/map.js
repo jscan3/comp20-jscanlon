@@ -106,6 +106,7 @@ function getDistances(dataObject){
 			}); 
 
 			distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(myCoords,passengerCoords));
+			distance = Math.round(distance * .000621371 * 1000)/1000;
 			passengersMarker.setMap(map);
 			//
 			infoWindow(passengers,passengersMarker,distance);
