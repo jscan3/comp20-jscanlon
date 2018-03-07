@@ -45,7 +45,6 @@ function renderMap() {
 		center: myLocation, 
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
-	console.log("map");
 	map = new google.maps.Map(document.getElementById("map_canvas"), myLocationOptions); 
 	map.panTo(myLocation);
 
@@ -60,14 +59,13 @@ function renderMap() {
 	getInformation();
 }
 function getInformation() {
-	
+
 	// create instance of XML object 
 	var xhr = new XMLHttpRequest();
 	// set URL
 	var URL =  "https://jordan-marsh.herokuapp.com/rides";
 	// sending in parameter
 	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng; 
-	console.log(params);
 	xhr.open("POST", URL, true); 
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -76,7 +74,6 @@ function getInformation() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			// converts string into javascipt object
 			var dataObject = JSON.parse(xhr.responseText); 
-			console.log(dataObject);
 			// find closest vehicle or passenger
 			getDistances(dataObject); 
 			//infoWindow();
