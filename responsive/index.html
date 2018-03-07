@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 
 <html>
@@ -12,3 +13,90 @@
   <div class="k8em0"></div>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Rick Roll</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 id="title">Rick Roll</h1>
+
+<video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll" controls></video>
+<div id="lyrics"></div>
+
+<script type="text/javascript">
+	var video = document.getElementById("rickroll"); 
+	var lyrics = document.getElementById("lyrics");
+	video.addEventListener("timeupdate", function() {
+
+		if (video.currentTime > 19 && video.currentTime < 34)
+		{
+
+			lyrics.innerHTML = "We're no stranger to love <br/> you know the rules and so do I <br/> A full commitment's what I'm thinking of <br/> you wouldn't get this from any other guy"; 
+		}
+		else if (video.currentTime > 34 && video.
+			currentTime < 42)
+		{
+			lyrics.innerHTML = "I just wanna tell you how I'm feeling" + "<br/>" + "Gotta make you understand"; 
+		}
+		else if (video.currentTime > 42 && video.currentTime < 59)
+		{
+			lyrics.innerHTML = "Never gonna give you up <br/> Never gonna let you down <br/> Never gonna run around and desert you <br/> Never gonna make you cry <br/> Never gonna say goodbye <br/> Never gonna tell a lie and hurt you"; 
+		}
+		else if (video.currentTime > 59 && video.currentTime < 77)
+		{
+			lyrics.innerHTML = "We've known each other for so long <br/> Your heart's been aching, but <br/> You're too shy to say it <br/> Inside, we both know what's been going on <br/> We know the game and we're gonna play it";
+		}
+		else if (video.currentTime > 77 && video.currentTime < 85) 
+		{
+			lyrics.innerHTML = "And if you ask me how I'm feeling <br/> Don't tell me you're too blind to see";
+		}
+		else if (video.currentTime > 85 && video.currentTime < 102)
+		{
+			lyrics.innerHTML = "Never gonna give you up <br/> Never gonna let you down <br/> Never gonna run around and desert you <br/> Never gonna make you cry <br/> Never gonna say goodbye <br/> Never gonna tell a lie and hurt you";
+		}
+		else if (video.currentTime > 102 && video.currentTime < 118)
+		{
+			lyrics.innerHTML = "Never gonna give you up <br/> Never gonna let you down <br/> Never gonna run around and desert you <br/> Never gonna make you cry <br/> Never gonna say goodbye <br/> Never gonna tell a lie and hurt you";
+		}
+		else if (video.currentTime > 118 && video.currentTime < 136)
+		{
+			lyrics.innerHTML = "(Ooh, give you up) <br/> (Ooh, give you up) <br/> Never gonna give, never gonna give <br/> (Give you up) <br/> Never gonna give, never gonna give <br/> (Give you up)"; 
+		}
+		else if (video.currentTime > 136 && video.currentTime < 153)
+		{
+			lyrics.innerHTML = "We've known each other for so long <br/> Your heart's been aching, but <br/> You're too shy to say it <br/> Inside, we both know what's been going on <br/> We know the game and we're gonna play it";
+		}
+		else if (video.currentTime > 153 && video.currentTime < 161)
+		{
+			lyrics.innerHTML = "I just wanna tell you how I'm feeling <br/> Gotta make you understand"; 
+		}
+		else if (video.currentTime > 161 && video.currentTime < 178)
+		{
+			lyrics.innerHTML = "Never gonna give you up <br/> Never gonna let you down <br/> Never gonna run around and desert you <br/>Never gonna make you cry <br/> Never gonna say goodbye <br/> Never gonna tell a lie and hurt you";
+		}
+		else if (video.currentTime > 178 && video.currentTime < 195)
+		{
+			lyrics.innerHTML = "Never gonna give you up <br/> Never gonna let you down <br/> Never gonna run around and desert you <br/> Never gonna make you cry <br/> Never gonna say goodbye <br/> Never gonna tell a lie and hurt you"; 
+		}
+		else if (video.currentTime > 195 && video.currentTime < 212)
+		{
+			lyrics.innerHTML = "Never gonna give you up <br/> Never gonna let you down <br/> Never gonna run around and desert you <br/> Never gonna make you cry <br/> Never gonna say goodbye <br/> Never gonna tell a lie and hurt you"; 
+		}
+		else 
+		{
+			lyrics.innerHTML = "";
+		}
+
+
+	}, false);
+	// Complete this section and create a CSS file named style.css
+</script>
+</body>
+</html>	
+>>>>>>> a1b6d8282df61e4cebc74fb0e4600272cf534663
