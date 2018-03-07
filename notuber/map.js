@@ -139,7 +139,7 @@ function getDistances(dataObject){
 			}
 		}
 		// invoke function to create info window on click of user's location pin
-		myInfoWindow(passengers,minDistance); 
+		myInfoWindow(closestPassenger,minDistance); 
 	}
 
 	// user is passenger 
