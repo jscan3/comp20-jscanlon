@@ -19,6 +19,7 @@ function initMap() {
 	// create the map in the "map_canvas" div with default location
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
 
+	// get location
 	getMyLocation(); 
 }
 function getMyLocation() {
@@ -26,6 +27,7 @@ function getMyLocation() {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			myLat = position.coords.latitude;
 			myLng = position.coords.longitude;
+			// render map with location of user
 			renderMap();
 		});
 	}
@@ -47,7 +49,7 @@ function renderMap() {
 	map = new google.maps.Map(document.getElementById("map_canvas"), myLocationOptions); 
 	map.panTo(myLocation);
 
-	var image = "marker.png";
+	var image = "myMarker.png";
 
 	// set current marker of the user 
 	 marker = new google.maps.Marker({
@@ -55,7 +57,10 @@ function renderMap() {
 		icon: image
 	}); 
 	marker.setMap(map);
-
+	getInformation();
+}
+function getInformation() {
+	
 	// create instance of XML object 
 	var xhr = new XMLHttpRequest();
 	// set URL
@@ -73,7 +78,7 @@ function renderMap() {
 			var dataObject = JSON.parse(xhr.responseText); 
 			console.log(dataObject);
 			// find closest vehicle or passenger
-			getRideInformation(dataObject); 
+			getDistances(dataObject); 
 			//infoWindow();
 
 		}
@@ -81,7 +86,7 @@ function renderMap() {
 	xhr.send(params);
 }
 
-function getRideInformation(dataObject){
+function getDistances(dataObject){
 	var passengersArray = dataObject.passengers;
 	var myCoords = new google.maps.LatLng(myLat,myLng);
 	var minDistance = Number.POSITIVE_INFINITY; 
