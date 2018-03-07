@@ -1,5 +1,3 @@
-
-
 var myLat = 0; 
 var myLng = 0;
 var username = "TapqFEtdFF"; 
@@ -10,16 +8,16 @@ var passengerMarker;
 var vehicleMarker;
 
 function initMap() {
-	// var defaultLocation  = new google.maps.LatLng(0,0); 
+	var defaultLocation  = new google.maps.LatLng(0,0); 
 
-	// // set up map 
-	// var myOptions = { 
-	// 	zoom: 13,
-	// 	center: defaultLocation,
-	// 	mapTypeId: google.maps.MapTypeId.ROADMAP
-	// }; 
-	// // create the map in the "map_canvas" div with default location
-	// map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
+	// set up map 
+	var myOptions = { 
+		zoom: 13,
+		center: defaultLocation,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}; 
+	// create the map in the "map_canvas" div with default location
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
 
 	getMyLocation(); 
 }
