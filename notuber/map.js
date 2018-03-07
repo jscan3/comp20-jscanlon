@@ -75,7 +75,7 @@ function getInformation() {
 	var URL =  "https://jordan-marsh.herokuapp.com/rides";
 
 	// sending in string as parameter to send function
-	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng; 
+	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng;
 	xhr.open("POST", URL, true); 
 
 	// send proper header information along with request
@@ -153,7 +153,7 @@ function getDistances(dataObject){
 			vehicleLat = vehicles["lat"];
 			vehicleLng = vehicles["lng"];
 			vehicleCoords = new google.maps.LatLng(vehicleLat, vehicleLng);
-			console.log(vehicles);
+
 			vehicleMarker = new google.maps.Marker({
 				position: vehicleCoords, 
 				icon: vehicleIcon
