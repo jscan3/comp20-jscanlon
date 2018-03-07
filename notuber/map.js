@@ -182,9 +182,10 @@ function myInfoWindow(nearestObject,minDistance) {
 		objectString = "driver"; 
 	else 
 		objectString = "passenger";
-	// This is a global info window...
+
 	var myInfoWindow = new google.maps.InfoWindow();
 
+	// content displayed on info window 
 	var contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> closest " + objectString + ": " + minDistance +  " miles</h2>";
 				
 	// Open info window on click of marker
@@ -203,52 +204,14 @@ function infoWindow(dataObject,marker,distance) {
 		objectString = "driver"; 
 	else 
 		objectString = "passenger";
-	// global info window 
-	var infoWindow = new google.maps.InfoWindow(); 
 
+	var infoWindow = new google.maps.InfoWindow(); 
+	// diplayed content for on each passenger or vehicle icon
 	var contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> distance: " + distance + " miles</h2>";
 
-	// Open info window on click of marker
+	
 	google.maps.event.addListener(marker, 'click', function() {
 			infoWindow.setContent(contentString);
 			infoWindow.open(map,marker);
 	});
 }
-
-// function infoWindow(dataObject,marker,distance) {
-// 	var infoWindow = new google.maps.InfoWindow(); 
-
-// 	// Open info window on click of marker 
-// 	google.maps.event.addListener()
-
-// }
-
-
-
-
-
-		//var defaultLocation = new Google.maps.LatLng(0,0); 
-
-		// getMyLocation(); 
-		// 	}
-
-		// 	function getMyLocation() {
-		// 		if (navigator.geolocation)
-		// 			getCurrentPosition(
-		// 			function(position) {
-		// 				myLat = position.coords.latitude; 
-		// 				myLng = position.coords.longitude; 
-		// 				elem = document.getElementById("location")
-		// 				elem.innerHTML = "<h2> You are located at " + mylat + ", " + myLng + "</h2"; 
-		// 			}); 
-		// 		else {
-		// 			alert("Geolocation is not supported by your web browser.");
-		// 		}
-		// 	}
-
-
-// TODO:
-// 1. Get your location
-// 2. (Put this step inside of the callback of get your location) call getsetcurrmarker and getinfo inside of getgeolocation function
-// 3. Get the data in the Json format of a string, need to parse the string using json parse 
-// 4. Do console log 
