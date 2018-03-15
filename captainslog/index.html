@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Captain's Log</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script> 
+        var previous_messages;
+        $( document ).ready(function() {
+            if (localStorage.getItem("previous_messages")) {
+                previous_messages = JSON.parse(localStorage.getItem("previous_messages"));
+            } else {
+                previous_messages = []
+            }
+            
+            $.each(previous_messages, function(key, value) {
+                $("#log").prepend('<div>' + value + '</div>');
+            });
+        });
+
+        $( document ).keypress(function (event) {
+            if(event.which == 13)  {
+                // create new date string
+                var date = new Date(); 
+                var message = $("#msg").val(); 
+                var string = date + " - " + message;
+                // inserts most recent message
+                $("#log").prepend('<div>' + string + '</div>');
+                previous_messages.push(string);
+                localStorage.setItem("previous_messages", JSON.stringify(previous_messages));
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Captain's Log</h1>
+    <h3>New entry: <input type="text" id="msg" name="msg" size="30" /></h3>
+    <div id="log"></div>
+</body>
+</html>
