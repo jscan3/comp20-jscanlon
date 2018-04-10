@@ -3,6 +3,7 @@ var myLng = 0;
 var username = "TapqFEtdFF"; 
 var myLocation; 
 var map; 
+var oldinfoWindow;
 var marker;
 var passengersMarker;
 var vehicleMarker;
@@ -72,7 +73,7 @@ function getInformation() {
 	// create instance of XML object 
 	var xhr = new XMLHttpRequest();
 	// set URL
-	var URL =  "https://jordan-marsh.herokuapp.com/rides";
+	var URL =  "gentle-ravine-21921.herokuapp.com/rides";
 
 	// sending in string as parameter to send function
 	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng;
@@ -198,16 +199,22 @@ function myInfoWindow(nearestObject,minDistance) {
 		contentString = "<h2> username: " + username + "</h2>" + "<br/>" + "<h2> closest " + objectString + ": " + minDistance +  " miles</h2>";
 
 	var myInfoWindow = new google.maps.InfoWindow();
-			
+	
+	
 	// Open info window on click of marker
 	google.maps.event.addListener(marker, 'click', function() {
 			myInfoWindow.setContent(contentString);
-			myInfoWindow.open(map, marker);
+
+			if (oldinfoWindow != null) {
+                oldinfoWindow.close();
+            }
+            myInfoWindow.open(map, marker);
+            oldinfoWindow = myInfoWindow;
 	});
 }
 
 function infoWindow(dataObject,marker,distance) {
-
+	var icon; 
 	var objectString = ""; 
 	username = dataObject["username"];
 
@@ -223,6 +230,10 @@ function infoWindow(dataObject,marker,distance) {
 	
 	google.maps.event.addListener(marker, 'click', function() {
 			infoWindow.setContent(contentString);
-			infoWindow.open(map,marker);
-	});
+			if (oldinfoWindow != null) {
+                oldinfoWindow.close();
+            }
+            infoWindow.open(map,marker);
+            oldinfoWindow = infoWindow;
+        });
 }
