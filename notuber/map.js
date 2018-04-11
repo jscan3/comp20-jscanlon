@@ -73,7 +73,7 @@ function getInformation() {
 	// create instance of XML object 
 	var xhr = new XMLHttpRequest();
 	// set URL
-	var URL =  "gentle-ravine-21921.herokuapp.com/rides";
+	var URL =  "https://gentle-ravine-21921.herokuapp.com/rides";
 
 	// sending in string as parameter to send function
 	var params = "username=" + username + "&lat=" + myLat + "&lng=" + myLng;
