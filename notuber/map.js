@@ -113,7 +113,7 @@ function getDistances(dataObject){
 	if (passengersArray != undefined) {
 
 		for (var passengers of passengersArray) { 
-
+			console.log("passengers");
 			passengerLat = passengers["lat"];
 			passengerLng = passengers["lng"];
 			passengerCoords = new google.maps.LatLng(passengerLat, passengerLng);
@@ -137,6 +137,7 @@ function getDistances(dataObject){
 			if (distance < minDistance) {
 				minDistance = distance;
 				closestPassenger = passengers;
+				console.log(closestPassenger);
 			}
 		}
 		// invoke function to create info window on click of user's location pin
@@ -189,7 +190,10 @@ function myInfoWindow(nearestObject,minDistance) {
 	username = "TapqFEtdFF"; 
 
 	if (nearestObject.passengers == undefined)
+	{
+		console.log("driver");
 		objectString = "driver"; 
+	}	
 	else 
 		objectString = "passenger";
 
